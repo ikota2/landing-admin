@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 interface MessageState {
@@ -10,7 +11,7 @@ const Login: FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState<MessageState>({ message: '', color: '' });
-  const [token, setToken] = useState<null | string>(null);
+  const navigate = useNavigate();
 
   const handleLogin = async (): Promise<void> => {
     try {
@@ -20,8 +21,8 @@ const Login: FC = () => {
       });
       if (response.status === 200) {
         setMessage({ message: 'Успешно', color: 'green' });
-        setToken(response.data.token);
-        console.log(token);
+        localStorage.setItem('token', response.data.token);
+        navigate('/dashboard');
       }
     } catch (error) {
       setMessage({ message: 'Неудача', color: 'red' });
