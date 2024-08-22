@@ -6,7 +6,7 @@ import Login from './Login/Login';
 import ProtectedRoute from '../features/ProtectedRoute/ProtectedRoute';
 import Layout from '../shared/ui/Layout/Layout';
 
-const DashboardPage = lazy(() => import('./Dashboard/Dashboard'));
+const DashboardPage = lazy(() => import('./Dashboard/ui/Dashboard'));
 
 export const Routing = () => {
   return (
