@@ -1,4 +1,9 @@
+
+import CreateVacancyForm from '../../ui/CreateVacancyForm/CreateVacancyForm';
+import DeleteVacancy from '../../ui/DeleteVacancy/DeleteVacancy';
 import { IFormField, IList } from '../../model/types';
+import {Tab} from '../../../../shared/ui/Tabs/model/types';
+
 
 export const FORM_FIELDS: IFormField[] = [
   {label: 'Тип', name: 'type', hasSelect: true},
@@ -11,6 +16,11 @@ export const LISTS: IList[] = [
   { title: 'Обязанности', name: 'responsibilities' },
   { title: 'Требования', name: 'requirements' },
   { title: 'Условия', name: 'conditions' },
+];
+
+export const tabs: Tab[] = [
+  { name: 'Создать', content: <CreateVacancyForm /> },
+  { name: 'Удалить', content: <DeleteVacancy /> },
 ];
 
 // export const FORM_SCHEMA = {
