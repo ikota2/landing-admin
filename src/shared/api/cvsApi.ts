@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { URL } from '../constants';
+import { URL } from '../config/constants';
 import { CV } from '../types/cvsTypes';
 
 export const getCvs = async (token: string): Promise<CV[]> => {

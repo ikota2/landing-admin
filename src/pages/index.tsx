@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+
 import { ThemeProvider } from '../app/ThemeContext';
 import Login from './Login/Login';
 import ProtectedRoute from '../features/ProtectedRoute/ProtectedRoute';

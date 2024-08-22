@@ -1,55 +1,59 @@
-import { FC, useState } from 'react';
+import {ChangeEvent, FC, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-interface MessageState {
-  message: string;
-  color: string;
-}
+import Notification from '../../shared/ui/Notification/Notification';
+import { useNotificationStore } from '../../shared/hooks/useNotificationStore';
+import styles from './Login.module.css';
 
 const Login: FC = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState<MessageState>({ message: '', color: '' });
+  const [formData, setFormData] = useState<{username: string; password: string}>({ username: '', password: '' });
   const navigate = useNavigate();
+  const { showNotification } = useNotificationStore();
 
   const handleLogin = async (): Promise<void> => {
     try {
-      const response = await axios.post('https://landing-rose-beta.vercel.app/api/login', {
-        username,
-        password
-      });
+      const response = await axios.post('https://landing-rose-beta.vercel.app/api/login', formData);
       if (response.status === 200) {
-        setMessage({ message: 'Успешно', color: 'green' });
         localStorage.setItem('token', response.data.token);
+        showNotification('Вы вошли в систему', 'success');
         navigate('/dashboard');
       }
     } catch (error) {
-      setMessage({ message: 'Неудача', color: 'red' });
+      showNotification('Ошибка входа. Проверьте свои данные', 'error');
     }
   };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className={styles.container}>
       <input
         type="text"
+        name="username"
         placeholder="Логин"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        style={{ margin: '10px', padding: '10px', width: '200px' }}
+        value={formData.username}
+        onChange={handleChange}
+        className={styles.input}
       />
       <input
         type="password"
+        name="password"
         placeholder="Пароль"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        style={{ margin: '10px', padding: '10px', width: '200px' }}
+        value={formData.password}
+        onChange={handleChange}
+        className={styles.input}
       />
-      <button onClick={handleLogin} style={{ padding: '10px 20px', margin: '10px' }}>
+      <button onClick={handleLogin} className={styles.button}>
         Войти
       </button>
-      {message.message && (
-        <p style={{ color: message.color }}>{message.message}</p>
-      )}
+      <Notification />
     </div>
   );
 };
