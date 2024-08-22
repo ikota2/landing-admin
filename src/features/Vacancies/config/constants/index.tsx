@@ -3,6 +3,8 @@ import CreateVacancyForm from '../../ui/CreateVacancyForm/CreateVacancyForm';
 import DeleteVacancy from '../../ui/DeleteVacancy/DeleteVacancy';
 import { IFormField, IList } from '../../model/types';
 import {Tab} from '../../../../shared/ui/Tabs/model/types';
+import Remote from '../../ui/DeleteVacancy/ui/Remote/Remote';
+import Onsite from '../../ui/DeleteVacancy/ui/Onsite/Onsite';
 
 
 export const FORM_FIELDS: IFormField[] = [
@@ -18,10 +20,15 @@ export const LISTS: IList[] = [
   { title: 'Условия', name: 'conditions' },
 ];
 
-export const tabs: Tab[] = [
+export const actionTabs: Tab[] = [
   { name: 'Создать', content: <CreateVacancyForm /> },
   { name: 'Удалить', content: <DeleteVacancy /> },
 ];
+
+export const vacancyTypeTabs: Tab[] = [
+  {name: 'Удаленка', content: <Remote />},
+  {name: 'На месте', content: <Onsite />}
+]
 
 // export const FORM_SCHEMA = {
 //   title: z
