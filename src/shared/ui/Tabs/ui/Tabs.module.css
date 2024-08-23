@@ -12,6 +12,7 @@
 	cursor: pointer;
 	border: none;
 	background-color: lightgray;
+	transition: 0.25s ease-in-out;
 }
 
 .activeTab {
