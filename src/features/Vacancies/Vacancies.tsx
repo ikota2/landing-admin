@@ -1,11 +1,14 @@
 import { FC } from 'react';
-import CreateVacancyForm from './ui/CreateVacancyForm/CreateVacancyForm';
+
+import Tabs from '../../shared/ui/Tabs/ui/Tabs';
+import { actionTabs } from './config/constants';
+
+
 
 const Vacancies: FC = () => {
   return (
     <>
-      <h3>Hello Vacancies</h3>
-      <CreateVacancyForm />
+      <Tabs tabs={actionTabs} />
     </>
   );
 };

@@ -1,10 +1,8 @@
-import { FC, ReactNode, useState } from 'react';
+import { FC, useState } from 'react';
+
+import { TabsProps } from '../model/types';
 import styles from './Tabs.module.css';
 
-interface TabsProps {
-  tabs: { name: string; content: ReactNode }[];
-  defaultActiveTab?: string;
-}
 
 const Tabs: FC<TabsProps> = ({ tabs, defaultActiveTab }) => {
   const [activeTab, setActiveTab] = useState(defaultActiveTab || tabs[0].name);
