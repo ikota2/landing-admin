@@ -13,10 +13,11 @@ const Remote: FC = () => {
   if (remoteVacancies && remoteVacancies.length > 0)
   return (
     <div className="job">
-      {remoteVacancies.map(( { title, responsibilities, requirements, conditions, salary, username } ) => {
+      {remoteVacancies.map(( { title, responsibilities, requirements, conditions, salary, username , id} ) => {
         return (
-          <Dropdown title={title}>
+          <Dropdown title={title} key={id} id={id}>
             <DropdownItem
+              id={id}
               title={title}
               responsibilities={responsibilities}
               requirements={requirements}

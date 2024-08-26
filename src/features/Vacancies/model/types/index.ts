@@ -12,7 +12,7 @@ export interface IList {
 
 
 export interface Vacancy {
-  id?: string;
+  id: string;
   username: string;
   responsibilities: string[];
   requirements: string[];
