@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import { FC } from 'react';
 
 import Tabs from '../../../../shared/ui/Tabs/ui/Tabs';
 import { vacancyTypeTabs } from '../../config/constants';

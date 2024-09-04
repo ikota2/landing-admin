@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Vacancy } from '../../../features/Vacancies/model/types';
+import { Vacancy } from '../../types/vacanciesTypes';
 import styles from './DropdownItem.module.css';
 
 const DropdownItem: FC<Vacancy> = (
