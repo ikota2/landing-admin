@@ -1,7 +1,9 @@
 import { FC, ReactNode, useEffect, useState } from 'react';
 
-import { useDeleteRemote } from '../../../features/Vacancies/model/useDeleteRemote';
+import { useVacancyStore } from '../../hooks/useVacancyStore';
+import { useDeleteVacancy } from '../../../features/Vacancies/model/useDeleteVacancy';
 import styles from './Dropdown.module.css';
+
 
 interface DropdownProps {
   title: string;
@@ -12,24 +14,23 @@ interface DropdownProps {
 const Dropdown: FC<DropdownProps> = ({ title, children, id  }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const vacancyType = useVacancyStore((state) => state.vacancyType);
+  const deleteRemoteMutation = useDeleteVacancy(vacancyType);
 
-  const deleteRemoteMutation = useDeleteRemote();
   const handleDelete = (id: string) => {
-    deleteRemoteMutation.mutate(id, {
-      onSuccess: () => {
-        setIsDeleting(true);
+    deleteRemoteMutation.mutate(
+      id, {
+        onSuccess: () => setIsDeleting(true)
       }
-    });
+    )
   }
 
   useEffect(() => {
     if (isDeleting) {
-      const timer = setTimeout(() => {
-        deleteRemoteMutation.reset();
-      }, 1000);
+      const timer = setTimeout(() => deleteRemoteMutation.reset(), 1000);
       return () => clearTimeout(timer);
     }
-  }, [isDeleting, deleteRemoteMutation]);
+  }, [isDeleting, deleteRemoteMutation])
 
   return (
     <div className={`${styles.dropdown} ${isDeleting ? styles.deleting : ''}`}>

@@ -1,10 +1,11 @@
 
+import { lazy } from 'react';
 import CreateVacancyForm from '../../ui/CreateVacancyForm/CreateVacancyForm';
 import DeleteVacancy from '../../ui/DeleteVacancy/DeleteVacancy';
+import { useGetRemoteVacancies } from '../../model/useGetRemoteVacancies';
+import { useGetOnsiteVacancies } from '../../model/useGetOnsiteVacancies';
 import { IFormField, IList } from '../../model/types';
-import {Tab} from '../../../../shared/ui/Tabs/model/types';
-import Remote from '../../ui/DeleteVacancy/ui/Remote/Remote';
-import Onsite from '../../ui/DeleteVacancy/ui/Onsite/Onsite';
+import { Tab } from '../../../../shared/ui/Tabs/model/types';
 
 
 export const FORM_FIELDS: IFormField[] = [
@@ -25,9 +26,12 @@ export const actionTabs: Tab[] = [
   { name: 'Удалить', content: <DeleteVacancy /> },
 ];
 
+// eslint-disable-next-line react-refresh/only-export-components
+const LazyVacanciesList = lazy(() => import('../../../../shared/ui/VacanciesList/VacanciesList'));
+
 export const vacancyTypeTabs: Tab[] = [
-  {name: 'Удаленка', content: <Remote />},
-  {name: 'На месте', content: <Onsite />}
+  {name: 'Удаленка', content: <LazyVacanciesList useVacanciesHook={useGetRemoteVacancies} />},
+  {name: 'На месте', content: <LazyVacanciesList useVacanciesHook={useGetOnsiteVacancies} />}
 ]
 
 // export const FORM_SCHEMA = {

@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-import { Token } from '../../../shared/types';
 import { URL } from '../../../shared/config/constants';
-import { ApiResponse, Vacancy } from '../model/types';
+import { Token } from '../../../shared/types';
+import { ApiResponse } from '../model/types';
+import { Vacancy}  from '../../../shared/types/vacanciesTypes';
 
 export const createOnsiteVacancy = async (vacancy: Vacancy, token: Token): Promise<ApiResponse> => {
   const { data } = await axios.post<ApiResponse>(`${URL}/create-onsite-vacancy`, vacancy, {
