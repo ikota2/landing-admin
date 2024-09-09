@@ -5,11 +5,11 @@ import Dropdown from '../Dropdown/Dropdown';
 import DropdownItem from '../DropdownItem/DropdownItem';
 import { Vacancy } from '../../types/vacanciesTypes';
 
-interface VacanciesListProps {
+interface EntityListProps {
   useVacanciesHook: () => UseQueryResult<Vacancy[], Error>;
 }
 
-const VacanciesList: FC<VacanciesListProps> = ({ useVacanciesHook }) => {
+const EntityList: FC<EntityListProps> = ({ useVacanciesHook }) => {
   const { data: vacancies, error, isLoading } = useVacanciesHook();
 
   if (isLoading) return <p>Loading...</p>;
@@ -38,4 +38,4 @@ const VacanciesList: FC<VacanciesListProps> = ({ useVacanciesHook }) => {
   return <p>No vacancies available</p>;
 };
 
-export default VacanciesList;
+export default EntityList;
