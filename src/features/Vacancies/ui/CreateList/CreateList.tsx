@@ -30,7 +30,7 @@ const CreateList: FC<ListProps> = ({ title, name }) => {
     return (
       !trimmedInputValue ||
       trimmedInputValue.length < 3 ||
-      !/^[а-яА-Я\s]+$/.test(trimmedInputValue) ||
+      !/^[а-яА-Яa-zA-Z\s]+$/.test(trimmedInputValue) ||
       /^\d/.test(trimmedInputValue)
     );
   }, [trimmedInputValue]);
