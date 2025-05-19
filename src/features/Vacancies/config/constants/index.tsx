@@ -27,11 +27,11 @@ export const actionTabs: Tab[] = [
 ];
 
 // eslint-disable-next-line react-refresh/only-export-components
-const LazyVacanciesList = lazy(() => import('../../../../shared/ui/VacanciesList/VacanciesList'));
+const LazyEntityList = lazy(() => import('../../../../shared/ui/EntityList/EntityList'));
 
 export const vacancyTypeTabs: Tab[] = [
-  {name: 'Удаленка', content: <LazyVacanciesList useVacanciesHook={useGetRemoteVacancies} />},
-  {name: 'На месте', content: <LazyVacanciesList useVacanciesHook={useGetOnsiteVacancies} />}
+  {name: 'Удаленка', content: <LazyEntityList useVacanciesHook={useGetRemoteVacancies} />},
+  {name: 'На месте', content: <LazyEntityList useVacanciesHook={useGetOnsiteVacancies} />}
 ]
 
 // export const FORM_SCHEMA = {
