@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../../../app/ThemeContext';
+// import { useTheme } from '../../../app/ThemeContext';
 import styles from './Header.module.css';
 
 const Header: FC = () => {
   const navigate = useNavigate();
-  const { toggleTheme, theme } = useTheme();
+  // const { toggleTheme, theme } = useTheme();
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -13,9 +13,9 @@ const Header: FC = () => {
   };
   return (
     <header className={styles.header}>
-      <button onClick={toggleTheme} className={styles.button}>
-        {theme === 'light' ? 'to dark' : 'to light'}
-      </button>
+      {/*<button onClick={toggleTheme} className={styles.button}>*/}
+      {/*  {theme === 'light' ? 'to dark' : 'to light'}*/}
+      {/*</button>*/}
       <button onClick={logout} className={styles.button}>Logout</button>
     </header>
   );
